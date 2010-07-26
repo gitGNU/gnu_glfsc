@@ -154,40 +154,52 @@ while test "${CURRENT}"; do
                         TZ="${ARGV[$INDEX]}"
                         ;;
 
+                -h | --help)
+                        $GLFSC_DIR/lib/help
+			exit 0
+			;;
+
+                --version)
+                        echo "GLFSC has no version! To be sure you are using"
+			echo "the most recent revision of the tools, clone the"
+			echo "git repository at <to be announced>"
+			exit 0
+			;;
+
         esac
         (( INDEX+=1 ))
 	CURRENT="${ARGV[$INDEX]}"
 done
 
-#TODO: write code to proof test variable assignments
-GLFSC_VARS=( '$GLFSC_BIARCH'
-'$GLFSC_BIN'
-'$GLFSC_ETC'
-'$GLFSC_GROUP'
-'$GLFSC_LIB'
-'$GLFSC_SCRIPTS'
-'$GLFSC_SRC'
-'$GLFSC_SYSROOT'
-'$GLFSC_TARGET'
-'$GLFSC_TOOLS'
-'$GLFSC_USER'
-'$CONFIG_SITE'
-'$CONFIG_SHELL'
-'$LC_ALL'
-'$LDFLAGS'
-'$TZ' )
+# #TODO: write code to proof test variable assignments
+# GLFSC_VARS=( '$GLFSC_BIARCH'
+# '$GLFSC_BIN'
+# '$GLFSC_ETC'
+# '$GLFSC_GROUP'
+# '$GLFSC_LIB'
+# '$GLFSC_SCRIPTS'
+# '$GLFSC_SRC'
+# '$GLFSC_SYSROOT'
+# '$GLFSC_TARGET'
+# '$GLFSC_TOOLS'
+# '$GLFSC_USER'
+# '$CONFIG_SITE'
+# '$CONFIG_SHELL'
+# '$LC_ALL'
+# '$LDFLAGS'
+# '$TZ' )
 
-INDEX=0
-CURRENT="${GLFSC_VARS[$INDEX]}"
-while test "${CURRENT}"; do
-       echo "${CURRENT} =" $( eval echo "${CURRENT}" )
-	(( INDEX+=1 ))
-	CURRENT="${GLFSC_VARS[$INDEX]}"
-done
+# INDEX=0
+# CURRENT="${GLFSC_VARS[$INDEX]}"
+# while test "${CURRENT}"; do
+#        echo "${CURRENT} =" $( eval echo "${CURRENT}" )
+# 	(( INDEX+=1 ))
+# 	CURRENT="${GLFSC_VARS[$INDEX]}"
+# done
 
-echo "debug: $P: early exit"
-exit 0
-#Variable assignment works correctly - bmb 1280110356
+# echo "debug: $P: early exit"
+# exit 0
+# #Variable assignment works correctly - bmb 1280110356
 
 # make glfsc build group if it doesn't already exist
 egrep -e "${GLFSC_GROUP}" /etc/group &>/dev/null
