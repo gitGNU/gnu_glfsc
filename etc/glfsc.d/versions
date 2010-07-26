@@ -1,0 +1,142 @@
+# -*-shell-script-*-
+
+## FILE: versions
+#
+# list of basesystem package names and versions
+#
+# Copyright 2010 Bryan Michael Baldwin
+#
+
+## COPYING:
+#
+# This file is part of GNU+Linux from Source Code
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+## END COPYING
+
+## MAIN: versions
+#
+
+BASESYSTEM=(
+'autoconf:2.66'				# untested 2.66		190710
+'automake:1.11.1'			# untested 1.11.1	190710
+'bash:4.1-7'				# untested 4.1 patch 7	190710
+'binutils:2.20.1'			# untested 2.20.1	190710
+'bison:2.4.2'				# untested 2.4.2	190710
+# opt diy
+'bpm:1.7'				# untested 1.7		190710
+'bzip2:1.0.5'				# untested 1.0.5	190710
+'coreutils:8.5'				# untested 8.5		190710
+# opt diy
+'cpio:2.9'				# untested 2.9		190710
+'dejagnu:1.4.4'				# untested 1.4.4	190710
+'diffutils:3.0'				# untested 3.0		190710
+'e2fsprogs:1.14.12'			# untested 1.14.12	190710
+# diy
+'ed:1.4'				# untested 1.4		190710
+'expect:5.44.1.15'			# untested 5.44.1.15	190710
+# diy
+'fakeroot:1.14.4'			# untested 1.14.4	190710
+'file:5.04'				# untested 5.04		190710
+'findutils:4.4.2'			# untested 4.4.2	190710
+'flex:2.5.35'				# untested 2.5.25	190710
+'gawk:3.1.8'				# untested 3.1.8	190710
+'gcc:4.5.0'				# untested 4.5.0	190710
+# lfs
+'gdbm:1.8.3'				# untested 1.8.3	190710
+'gettext:0.18.1.1'			# untested 0.18.1.1	190710
+'glibc:2.11.2'				# untested 2.11.2	190710
+# gcc-4.3+
+'gmp:5.0.1'				# untested 5.0.1	190710
+'grep:2.6.3'				# untested 2.6.3	190710
+'groff:1.20.1'				# untested 1.20.1	190710
+'grub:1.98'				# untested 1.98		190710
+'gzip:1.4'				# untested 1.4		190710
+# ppc diy
+#'hfsutils:3.2.6'			# untested 3.2.6	190710
+'iana-etc:2.30'				# untested 2.30		190710
+'inetutils:1.8'				# untested 1.8		190710
+# lfs
+'iproute2:2.6.34'			# untested 2.6.34	190710
+'kbd:1.15.2'				# untested 1.15.2	190710
+'less:436'				# untested 436		190710
+# lfs
+#'lfs-bootscripts:20100627'		# untested 20100627	190710
+# opt diy
+'libtar:1.2.11'				# untested 1.2.11	190710
+'libtool:2.2.10'			# untested 2.2.10	190710
+'linux-kernel:2.6.34.1'			# untested 2.6.34.1	190710
+# diy
+#'linux-headers:'			#antiquated
+'m4:1.4.14'				# untested 1.4.14	190710
+# ppc diy
+#'mac-fdisk:0.1'			# untested 0.1		190710
+'make:3.81'				# untested 3.81		190710
+# diy
+'makedev:1.7'				# untested 1.7		190710
+'man:1.6f'				# untested 1.6f		190710
+# lfs
+'man-db:2.5.7'				# untested 2.5.7	190710
+'man-pages:3.25'			# untested 3.25		190710
+# diy
+'man-pages-posix:2003-a'		# untested 2003-a	190710
+'module-init-tools:3.12'		# untested 3.12		190710
+# lfs
+'mpc:0.8.2'				# untested 0.8.2	190710
+# gcc-4.3+
+'mpfr:3.0.0'				# untested 3.0.0	190710
+'ncurses:5.7'				# untested 5.7		190710
+# diy
+'net-tools:1.60'			# untested 1.60		190710
+# opt diy
+#'ogdutils:'				#antiquated; cannot find source
+# opt diy
+'pacman:3.4.0'				# untested 3.4.0	190710
+'patch:2.6.1'				# untested 2.6.1	190710
+'perl:5.13.2'				# untested 5.13.2	190710
+# lfs
+'pkg-config:0.18.1'			# untested 0.18.1	190710
+'procps:3.2.8'				# untested 3.2.8	190710
+'psmisc:22.12'				# untested 22.12	190710
+'readline:6.1-2'			# untested 6.1-2	190710
+'sed:4.2.1'				# untested 4.2.1	190710
+'shadow:4.1.4.2'			# untested 4.1.4.2	190710
+'sysklogd:1.5'				# untested 1.5		190710
+'sysvinit:2.88'				# untested 2.88		190710
+'tar:1.23'				# untested 1.23		190710
+'tcl:8.5.8'				# untested 8.5.8	190710
+'texinfo:4.13a'				# untested 4.13a	190710
+# lfs
+'udev:160'				# untested 160		190710
+# lfs
+'udev-test-tarball:'			# untested 158		190710
+# lfs
+'udev-configuration-tarball:20100128'	# untested 20100128	190710
+'util-linux-ng:2.18'
+'vim:7.2'
+# opt lfs
+'vim-language-files:7.2'		# untested 7.2		190710
+# ppc diy
+#'yaboot:1.3.16'			# untested 1.3.16	190710
+'zlib:1.2.5'				# untested 1.2.5	190710
+# glfsc
+'xzutils:4.999.9'			# untested 4.999.9	190710
+)
+
+#
+## END MAIN: versions
+
+#
+## END FILE: versions
