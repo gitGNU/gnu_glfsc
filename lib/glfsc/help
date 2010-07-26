@@ -1,0 +1,54 @@
+# -*-shell-script-*-
+
+## FILE: help
+#
+# Show a helpful message on the terminal
+#
+# Copyright (C) 2010 Bryan Michael Baldwin
+#
+
+## COPYING:
+#
+# This file is part of GNU+Linux from Source Code
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+## END COPYING
+
+echo "\
+GNU+Linux from Source Code
+
+USAGE: bin/glfsc.sh [OPTIONS]
+
+-a | --biarch          Turn on dual architecture (32 and 64 bit libraries)
+-b | --bindir          The directory GLFSC binaries will be located
+-c | --sysconfdir      The directory GLFSC configuration files will be located
+-g | --group           Name of a group with which GLFSC will build the system
+-l | --libdir          The directory GLSFC shared binaries will be located
+-R | --scriptdir       The directory in which GLFSC buildscript will reside
+-s | --sourcedir       The directory that source tarballs will be put
+-r | --root            The directory that will serve as the system root
+-t | --target          Architecture target triplet
+-T | --toolsdir        The directory where the temporary toolchain will reside
+-u | --user            Name of a user with which GLSFC will build the system
+-C | --config-site     Location for the file that will pass special GCC flags
+-S | --config-shell    Name of the shell binary to be used during the build
+-L | --locale          Character encoding for the system to be built
+-F | --ld-flags        Special linker flags (will be used in config.site)
+-z | --timezone        The timezone for the system to be built
+-h | --help            Show a helpful message just like this one, then exit
+-H | --show-env        List the GLFSC runtime variables and their values
+-v | --verbose         Increase verbosity
+-V | --version         Show the current version of GLFSC and exit
+"

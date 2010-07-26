@@ -70,6 +70,7 @@ P="${0##*\/}"   # capture progam invocation (without path)
 ARGC="${#@}"    # capture number of command arguments
 ARGV=("${@}")   # capture command arguments as an array
 
+# parse command line arguments
 INDEX=0
 CURRENT=${ARGV[$INDEX]}
 while test "${CURRENT}"; do
@@ -153,9 +154,41 @@ while test "${CURRENT}"; do
                         (( INDEX+=1 ))
                         TZ="${ARGV[$INDEX]}"
                         ;;
+                -H | --show--env)
+                        # TODO: use flag to trigger code after parsing
+                        #       but before GLFSC processing
+                        GLFSC_VARS=( '$GLFSC_BIARCH'
+                        '$GLFSC_BIN'
+                        '$GLFSC_ETC'
+                        '$GLFSC_GROUP'
+                        '$GLFSC_LIB'
+                        '$GLFSC_SCRIPTS'
+                        '$GLFSC_SRC'
+                        '$GLFSC_SYSROOT'
+                        '$GLFSC_TARGET'
+                        '$GLFSC_TOOLS'
+                        '$GLFSC_USER'
+                        '$CONFIG_SITE'
+                        '$CONFIG_SHELL'
+                        '$LC_ALL'
+                        '$LDFLAGS'
+                        '$TZ' )
+
+                        INDEX=0
+                        CURRENT="${GLFSC_VARS[$INDEX]}"
+                        while test "${CURRENT}"; do
+                               echo "${CURRENT} =" $( eval echo "${CURRENT}" )
+                        	(( INDEX+=1 ))
+                        	CURRENT="${GLFSC_VARS[$INDEX]}"
+                        done
+
+                        exit 0
+                        ;;
 
                 -h | --help)
-                        $GLFSC_DIR/lib/help
+                        # TODO: use flag to trigger code after parsing
+                        #       but before GLFSC processing
+                        source $GLFSC_DIR/lib/glfsc/help
 			exit 0
 			;;
 
