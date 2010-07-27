@@ -28,6 +28,16 @@
 #
 ## END COPYING
 
+## TODO ITEMS:
+#
+# This is a master TODO list. Items are placed here when there is no relevent
+# section in the code to place such a notice. Not every TODO will appear here
+# either. Don't assume theres nothing TODO if this section is empty.
+#
+# * Reimplement debug, error, and warning message functions. Make functions
+#   dependent on verbosity or other triggers where appropriate.
+#
+
 ## INCLUDE FILES
 #
 
@@ -71,6 +81,10 @@ ARGC="${#@}"    # capture number of command arguments
 ARGV=("${@}")   # capture command arguments as an array
 
 # parse command line arguments
+# NOTE: variable assignments can be done within the case statement
+#       but any actions must set a flag that triggers the action outside
+#       the case statement but before GLFSC processing (unless action is
+#       meant to be processed at some point within GLFSC processing)
 INDEX=0
 CURRENT=${ARGV[$INDEX]}
 while test "${CURRENT}"; do
@@ -155,44 +169,14 @@ while test "${CURRENT}"; do
                         TZ="${ARGV[$INDEX]}"
                         ;;
                 -H | --show--env)
-                        # TODO: use flag to trigger code after parsing
-                        #       but before GLFSC processing
-                        GLFSC_VARS=( '$GLFSC_BIARCH'
-                        '$GLFSC_BIN'
-                        '$GLFSC_ETC'
-                        '$GLFSC_GROUP'
-                        '$GLFSC_LIB'
-                        '$GLFSC_SCRIPTS'
-                        '$GLFSC_SRC'
-                        '$GLFSC_SYSROOT'
-                        '$GLFSC_TARGET'
-                        '$GLFSC_TOOLS'
-                        '$GLFSC_USER'
-                        '$CONFIG_SITE'
-                        '$CONFIG_SHELL'
-                        '$LC_ALL'
-                        '$LDFLAGS'
-                        '$TZ' )
-
-                        INDEX=0
-                        CURRENT="${GLFSC_VARS[$INDEX]}"
-                        while test "${CURRENT}"; do
-                               echo "${CURRENT} =" $( eval echo "${CURRENT}" )
-                        	(( INDEX+=1 ))
-                        	CURRENT="${GLFSC_VARS[$INDEX]}"
-                        done
-
-                        exit 0
+                        GLFSC_SHOW_ENV=1
                         ;;
 
                 -h | --help)
-                        # TODO: use flag to trigger code after parsing
-                        #       but before GLFSC processing
-                        source $GLFSC_DIR/lib/glfsc/help
-			exit 0
-			;;
+                        GLFSC_SHOW_HELP=1
+                        ;;
 
-                --version)
+                -V | --version)
                         echo "GLFSC has no version! To be sure you are using"
 			echo "the most recent revision of the tools, clone the"
 			echo "git repository at <to be announced>"
@@ -233,6 +217,46 @@ done
 # echo "debug: $P: early exit"
 # exit 0
 # #Variable assignment works correctly - bmb 1280110356
+
+# show variable assignment and exit
+if ${GLFSC_SHOW_ENV}; then
+
+        GLFSC_VARS=( '$GLFSC_BIARCH'
+        '$GLFSC_BIN'
+        '$GLFSC_ETC'
+        '$GLFSC_GROUP'
+        '$GLFSC_LIB'
+        '$GLFSC_SCRIPTS'
+        '$GLFSC_SRC'
+        '$GLFSC_SYSROOT'
+        '$GLFSC_TARGET'
+        '$GLFSC_TOOLS'
+        '$GLFSC_USER'
+        '$CONFIG_SITE'
+        '$CONFIG_SHELL'
+        '$LC_ALL'
+        '$LDFLAGS'
+        '$TZ' )
+
+        INDEX=0
+        CURRENT="${GLFSC_VARS[$INDEX]}"
+        while test "${CURRENT}"; do
+               echo "${CURRENT} =" $( eval echo "${CURRENT}" )
+        	(( INDEX+=1 ))
+        	CURRENT="${GLFSC_VARS[$INDEX]}"
+        done
+
+        exit 0
+
+fi
+
+# show a helpful message and then exit
+if ${GLFSC_SHOW_HELP}; then
+
+        source $GLFSC_DIR/lib/glfsc/help
+        exit 0
+
+fi
 
 # make glfsc build group if it doesn't already exist
 egrep -e "${GLFSC_GROUP}" /etc/group &>/dev/null
