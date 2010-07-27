@@ -71,10 +71,10 @@ source $GLFSC_DIR/etc/glfsc.d/versions
 
 # declarations;
 
-ARGC=0	        # number of command arguments
-ARGV=()	        # array of command arguments
+ARGC=0          # number of command arguments
+ARGV=()         # array of command arguments
 CURRENT=""      # single member focus
-INDEX=0	        # counter to traverse array index
+INDEX=0         # counter to traverse array index
 P="${0##*\/}"   # capture progam invocation (without path)
 
 ARGC="${#@}"    # capture number of command arguments
@@ -176,16 +176,17 @@ while test "${CURRENT}"; do
                         GLFSC_SHOW_HELP=1
                         ;;
 
+                -v | --verbose)
+                        GLFSC_VERBOSITY=1
+                        ;;
+
                 -V | --version)
-                        echo "GLFSC has no version! To be sure you are using"
-			echo "the most recent revision of the tools, clone the"
-			echo "git repository at <to be announced>"
-			exit 0
-			;;
+                        GLFSC_SHOW_VERSION=1
+                        ;;
 
         esac
         (( INDEX+=1 ))
-	CURRENT="${ARGV[$INDEX]}"
+        CURRENT="${ARGV[$INDEX]}"
 done
 
 # #TODO: write code to proof test variable assignments
@@ -210,8 +211,8 @@ done
 # CURRENT="${GLFSC_VARS[$INDEX]}"
 # while test "${CURRENT}"; do
 #        echo "${CURRENT} =" $( eval echo "${CURRENT}" )
-# 	(( INDEX+=1 ))
-# 	CURRENT="${GLFSC_VARS[$INDEX]}"
+#         (( INDEX+=1 ))
+#         CURRENT="${GLFSC_VARS[$INDEX]}"
 # done
 
 # echo "debug: $P: early exit"
@@ -242,8 +243,8 @@ if ${GLFSC_SHOW_ENV}; then
         CURRENT="${GLFSC_VARS[$INDEX]}"
         while test "${CURRENT}"; do
                echo "${CURRENT} =" $( eval echo "${CURRENT}" )
-        	(( INDEX+=1 ))
-        	CURRENT="${GLFSC_VARS[$INDEX]}"
+                (( INDEX+=1 ))
+                CURRENT="${GLFSC_VARS[$INDEX]}"
         done
 
         exit 0
@@ -258,17 +259,27 @@ if ${GLFSC_SHOW_HELP}; then
 
 fi
 
+# show GLFSC version and exit
+if ${GLFSC_SHOW_VERSION}
+
+        echo "GLFSC has no version! To be sure you are using"
+        echo "the most recent revision of the tools, clone the"
+        echo "git repository at <to be announced>"
+        exit 0
+
+fi
+
 # make glfsc build group if it doesn't already exist
 egrep -e "${GLFSC_GROUP}" /etc/group &>/dev/null
 if [[ $? -eq 0 ]]; then
         echo "debug: $P: group ${GLFSC_GROUP} exists"
 else
         GID_MIN=1000 GID_MAX=9999 groupadd ${GLFSC_GROUP}
-	if [[ $? -eq 0 ]]; then
+        if [[ $? -eq 0 ]]; then
                 echo "debug: $P: made user group ${GLFSC_GROUP}"
         else
                 echo "error: $P: failed to make group ${GLFSC_GROUP}"
-		exit 1
+                exit 1
         fi
 fi
 
@@ -282,7 +293,7 @@ else
                 echo "debug: $P: made user ${GLFSC_USER}"
         else
                 echo "error: $P: failed to make user ${GLFSC_USER}"
-		exit 1
+                exit 1
         fi
 fi
 
@@ -295,8 +306,8 @@ else
                 echo "debug: $P: made directory ${GLFSC_SYSROOT}"
         else
                 echo "error: $P: failed to make directory ${GLFSC_SYSROOT}"
-		exit 1
-	fi
+                exit 1
+        fi
 fi
 
 # make necessary directories under GLFSC_SYSROOT
@@ -321,11 +332,11 @@ else
         if [[ $? -eq 0 ]]; then
                 echo -n "debug: $P: made directory "
                 echo "${GLFSC_SYSROOT}${GLFSC_SCRIPTS}"
-	else
+        else
                 echo -n "error: $P: failed to make directory "
-		echo "${GLFSC_SYSROOT}${GLFSC_SCRIPTS}"
-		exit 1
-	fi
+                echo "${GLFSC_SYSROOT}${GLFSC_SCRIPTS}"
+                exit 1
+        fi
 fi
 if test -d ${GLFSC_SYSROOT}${GLFSC_BIN}; then
         echo "debug: $P: directory ${GLFSC_SYSROOT}${GLFSC_BIN} exists"
@@ -335,11 +346,11 @@ else
         if [[ $? -eq 0 ]]; then
                 echo -n "debug: $P: made directory "
                 echo "${GLFSC_SYSROOT}${GLFSC_BIN}"
-	else
+        else
                 echo -n "error: $P: failed to make directory "
-		echo "${GLFSC_SYSROOT}${GLFSC_BIN}"
-		exit 1
-	fi
+                echo "${GLFSC_SYSROOT}${GLFSC_BIN}"
+                exit 1
+        fi
 fi
 if test -d ${GLFSC_SYSROOT}${GLFSC_ETC}; then
         echo "debug: $P: directory ${GLFSC_SYSROOT}${GLFSC_ETC} exists"
@@ -349,11 +360,11 @@ else
         if [[ $? -eq 0 ]]; then
                 echo -n "debug: $P: made directory "
                 echo "${GLFSC_SYSROOT}${GLFSC_ETC}"
-	else
+        else
                 echo -n "error: $P: failed to make directory "
-		echo "${GLFSC_SYSROOT}${GLFSC_ETC}"
-		exit 1
-	fi
+                echo "${GLFSC_SYSROOT}${GLFSC_ETC}"
+                exit 1
+        fi
 fi
 if test -d ${GLFSC_SYSROOT}${GLFSC_LIB}; then
         echo "debug: $P: directory ${GLFSC_SYSROOT}${GLFSC_LIB} exists"
@@ -363,11 +374,11 @@ else
         if [[ $? -eq 0 ]]; then
                 echo -n "debug: $P: made directory "
                 echo "${GLFSC_SYSROOT}${GLFSC_LIB}"
-	else
+        else
                 echo -n "error: $P: failed to make directory "
-		echo "${GLFSC_SYSROOT}${GLFSC_LIB}"
-		exit 1
-	fi
+                echo "${GLFSC_SYSROOT}${GLFSC_LIB}"
+                exit 1
+        fi
 fi
 if test -d ${GLFSC_SYSROOT}${GLFSC_SRC}; then
         echo "debug: $P: directory ${GLFSC_SYSROOT}${GLFSC_SRC} exists"
@@ -377,11 +388,11 @@ else
         if [[ $? -eq 0 ]]; then
                 echo -n "debug: $P: made directory "
                 echo "${GLFSC_SYSROOT}${GLFSC_SRC}"
-	else
+        else
                 echo -n "error: $P: failed to make directory "
-		echo "${GLFSC_SYSROOT}${GLFSC_SRC}"
-		exit 1
-	fi
+                echo "${GLFSC_SYSROOT}${GLFSC_SRC}"
+                exit 1
+        fi
 fi
 
 # link temptools directory to host /tools
@@ -394,8 +405,8 @@ else
                 echo "${GLFSC_SYSROOT}${GLFSC_TOOLS}"
         else
                 echo -n "error: $P: failed to make symlink to "
-		echo "temporary toolchain path ${GLFSC_SYSROOT}${GLFSC_TOOLS}"
-		exit 1
+                echo "temporary toolchain path ${GLFSC_SYSROOT}${GLFSC_TOOLS}"
+                exit 1
         fi
 fi
 
