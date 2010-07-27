@@ -262,9 +262,8 @@ fi
 # show GLFSC version and exit
 if test ${GLFSC_SHOW_VERSION}; then
 
-        echo "GLFSC has no version! To be sure you are using"
-        echo "the most recent revision of the tools, clone the"
-        echo "git repository at <to be announced>"
+        echo "GLFSC has no version! To be sure you are using the most recent"
+        echo "tools, clone the git repository at <to be announced>"
         exit 0
 
 fi
