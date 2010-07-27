@@ -220,7 +220,7 @@ done
 # #Variable assignment works correctly - bmb 1280110356
 
 # show variable assignment and exit
-if ${GLFSC_SHOW_ENV}; then
+if test ${GLFSC_SHOW_ENV}; then
 
         GLFSC_VARS=( '$GLFSC_BIARCH'
         '$GLFSC_BIN'
@@ -252,7 +252,7 @@ if ${GLFSC_SHOW_ENV}; then
 fi
 
 # show a helpful message and then exit
-if ${GLFSC_SHOW_HELP}; then
+if test ${GLFSC_SHOW_HELP}; then
 
         source $GLFSC_DIR/lib/glfsc/help
         exit 0
@@ -260,7 +260,7 @@ if ${GLFSC_SHOW_HELP}; then
 fi
 
 # show GLFSC version and exit
-if ${GLFSC_SHOW_VERSION}
+if test ${GLFSC_SHOW_VERSION}; then
 
         echo "GLFSC has no version! To be sure you are using"
         echo "the most recent revision of the tools, clone the"
