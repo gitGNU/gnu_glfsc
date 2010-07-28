@@ -37,6 +37,10 @@
 # * Reimplement debug, error, and warning message functions. Make functions
 #   dependent on verbosity or other triggers where appropriate.
 #
+# * Implement progress dialog that reports the completeness of an individual
+#   package build based on the log output of a sample run. Warn users not to
+#   rely on the progress bar to show fine grain or even accurate results.
+#
 
 ## INCLUDE FILES
 #
@@ -206,7 +210,7 @@ done
 # '$LC_ALL'
 # '$LDFLAGS'
 # '$TZ' )
-
+#
 # INDEX=0
 # CURRENT="${GLFSC_VARS[$INDEX]}"
 # while test "${CURRENT}"; do
@@ -214,7 +218,7 @@ done
 #         (( INDEX+=1 ))
 #         CURRENT="${GLFSC_VARS[$INDEX]}"
 # done
-
+#
 # echo "debug: $P: early exit"
 # exit 0
 # #Variable assignment works correctly - bmb 1280110356
@@ -223,21 +227,22 @@ done
 if test ${GLFSC_SHOW_ENV}; then
 
         GLFSC_VARS=( '$GLFSC_BIARCH'
-        '$GLFSC_BIN'
-        '$GLFSC_ETC'
-        '$GLFSC_GROUP'
-        '$GLFSC_LIB'
-        '$GLFSC_SCRIPTS'
-        '$GLFSC_SRC'
-        '$GLFSC_SYSROOT'
-        '$GLFSC_TARGET'
-        '$GLFSC_TOOLS'
-        '$GLFSC_USER'
-        '$CONFIG_SITE'
-        '$CONFIG_SHELL'
-        '$LC_ALL'
-        '$LDFLAGS'
-        '$TZ' )
+                     '$GLFSC_BIN'
+                     '$GLFSC_ETC'
+                     '$GLFSC_GROUP'
+                     '$GLFSC_LIB'
+                     '$GLFSC_SCRIPTS'
+                     '$GLFSC_SRC'
+                     '$GLFSC_SYSROOT'
+                     '$GLFSC_TARGET'
+                     '$GLFSC_TOOLS'
+                     '$GLFSC_USER'
+                     '$CONFIG_SITE'
+                     '$CONFIG_SHELL'
+                     '$LC_ALL'
+                     '$LDFLAGS'
+                     '$TZ'
+                           )
 
         INDEX=0
         CURRENT="${GLFSC_VARS[$INDEX]}"

@@ -83,7 +83,7 @@ BASESYSTEM=(
 'm4:1.4.14'				# untested 1.4.14	190710
 # ppc diy
 #'mac-fdisk:0.1'			# untested 0.1		190710
-'make:3.81'				# untested 3.81		190710
+'make:3.82'				# untested 3.81		290710
 # diy
 'makedev:1.7'				# untested 1.7		190710
 'man:1.6f'				# untested 1.6f		190710
